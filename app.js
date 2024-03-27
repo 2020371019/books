@@ -1,4 +1,4 @@
-import productsRoutes from './src/routes/books.routes';
+import libroutes from './src/routes/books.routes';
 import authRoutes from './src/routes/getin.routes';
 import createLibrarians from './src/libs/initialSetup';
 import express from 'express';
@@ -11,6 +11,6 @@ app.get('/', (req, res) => {
     res.send('welcome to bookstore ');
 });
 
-app.use('/books', productsRoutes);
+app.use('/books', libroutes);
 app.use('/getin', authRoutes);
 export default app;

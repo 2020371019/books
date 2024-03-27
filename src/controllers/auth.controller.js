@@ -31,7 +31,7 @@ export const signUp = async (req, res) => {
     const token = signToken(savedReader);
 
     // Responder al cliente con el token
-    res.status(200).json({ token });
+    res.status(200).json({ status: 200, message:"Tu Usuario ha sido registrado" } );
   } catch (error) {
     console.error("Error al registrar usuario:", error);
     res.status(500).json({ error: "Error al registrar usuario" });
