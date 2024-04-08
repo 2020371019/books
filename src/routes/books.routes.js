@@ -10,7 +10,7 @@ router.post('/', [authJwt.verifyToken,authJwt.isMasterLibrarian], Book.createBoo
 router.get('/:bookId', Book.getBookById); //todos
 router.get('/getbygenre/:genre', Book.getBooksByGenre); //todos
 router.post('/getbyauthor/', Book.getBooksByAuthor); //todos
-router.put('/:bookId', [authJwt.verifyToken,authJwt.isMasterLibrarian || authJwt.verifyToken,authJwt.isPageGuardian], Book.updateBookById);//admin y moderator
-router.delete('/:bookId', [authJwt.verifyToken, authJwt.isPageGuardian || authJwt.verifyToken,authJwt.isMasterLibrarian ], Book.deleteBookById);//admin y moderator
+router.put('/:bookId', [authJwt.verifyToken,authJwt.isMasterLibrarianOrPageGuardian], Book.updateBookById);//admin y moderator
+router.delete('/:bookId', [authJwt.verifyToken, authJwt.isMasterLibrarianOrPageGuardian ], Book.deleteBookById);//admin y moderator
 
 export default router;

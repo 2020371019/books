@@ -70,3 +70,22 @@ export const isMasterLibrarian = async (req, res, next) => {
     }
     return res.status(403).json({message: "You need to be a MasterLibrarian"});
 }
+
+
+export const isMasterLibrarianOrPageGuardian = async (req, res, next) => {
+    //busca el usuario en la base de datos
+    
+    const reader = await Reader.findById(req.readerId);
+    //buscar los roles del usuario
+    //const roles = await Role.find({ _id: { $in: user.roles } });
+    const librarians = await Librarians.find({_id: {$in: reader.roles}});
+    
+    for(let i = 0; i < librarians.length; i++){
+        console.log(librarians[i].name);
+        if(librarians[i].name == "MasterLibrarian" || librarians[i].name == "PageGuardian"){
+            next();
+            return;
+        }
+    }
+    return res.status(403).json({message: "You need to be a MasterLibrarian o PageGuardian"});
+}
