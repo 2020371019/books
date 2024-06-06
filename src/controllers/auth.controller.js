@@ -38,6 +38,21 @@ export const signUp = async (req, res) => {
   }
 };
 
+//obtener usuario por id
+export const obtenerUsuarioxId = async (req, res) => {
+  const readerFound = await Reader.findOne({_id: req.body.id});
+  //si no se encuentra el usuario mandar mensaje de error
+  if(!readerFound) 
+  return res.status(400)
+.json({message:"Usuario no encontrado"});
+  
+  //Mostrar usuario encontrado
+  //console.log(userFound);
+  //Enviar status y el token en la respuesta
+  res.status(200).json({readerFound});
+}
+
+
 //funcion para iniciar sesion 
 export const signIn = async (req, res) => {
     const readerFound = await Reader.findOne({email: req.body.email}).populate("roles");
