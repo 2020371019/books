@@ -5,7 +5,7 @@ import * as authCtrl from "../controllers/auth.controller";
 
 router.post('/signup', authCtrl.signUp)
 router.post('/signin', authCtrl.signIn)
-router.post('/obtenerusuario', authCtrl.obtenerUsuarioxId)
+router.get('/obtenerusuario/:id', authCtrl.obtenerUsuarioxId)
 
 
 export default router;

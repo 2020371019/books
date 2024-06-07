@@ -39,11 +39,21 @@ export const signUp = async (req, res) => {
 };
 
 //obtener usuario por id
+export const getBookById = async (req, res) => {
+  try{
+  const {bookId} = req.params
+  const book = await Book.findById(bookId);
+  res.json(book);
+  } catch(error){
+      res.status(500).json({message: "El Libro no Existe"});
+  }
+}
 export const obtenerUsuarioxId = async (req, res) => {
-  const readerFound = await Reader.findOne({_id: req.body.id});
+  const {id} = req.params
+  const readerFound = await Reader.findById(id);
   //si no se encuentra el usuario mandar mensaje de error
   if(!readerFound) 
-  return res.status(400)
+  return res.status(500)
 .json({message:"Usuario no encontrado"});
   
   //Mostrar usuario encontrado
