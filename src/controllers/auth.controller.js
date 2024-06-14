@@ -54,6 +54,42 @@ export const obtenerUsuarioxId = async (req, res) => {
   res.status(200).json({readerFound});
 }
 
+// Editar usuario por ID
+export const updateUserById = async (req, res) => {
+  try {
+      const userID = req.params.userID;
+      const { readername, email, password } = req.body;
+
+      const updateData = {};
+
+      if (readername) {
+          updateData.readername = readername;
+      }
+
+      if (email) {
+          updateData.email = email;
+      }
+
+      if (password) {
+          updateData.password = await Reader.encryptPassword(password);
+      }
+
+
+      const updatedUser = await Reader.findByIdAndUpdate(
+          userID,
+          updateData,
+          { new: true }
+      );
+
+      if (!updatedUser) {
+          return res.status(404).json({ message: "Usuario no encontrado" });
+      }
+
+      res.status(200).json({ message: "Usuario actualizado", Reader: updatedUser });
+  } catch (error) {
+      res.status(500).json({ message: "Error al actualizar", error: error.message });
+  }
+};
 
 //funcion para iniciar sesion 
 export const signIn = async (req, res) => {
