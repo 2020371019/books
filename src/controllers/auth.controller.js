@@ -39,15 +39,7 @@ export const signUp = async (req, res) => {
 };
 
 //obtener usuario por id
-export const getBookById = async (req, res) => {
-  try{
-  const {bookId} = req.params
-  const book = await Book.findById(bookId);
-  res.json(book);
-  } catch(error){
-      res.status(500).json({message: "El Libro no Existe"});
-  }
-}
+
 export const obtenerUsuarioxId = async (req, res) => {
   const {id} = req.params
   const readerFound = await Reader.findById(id);
