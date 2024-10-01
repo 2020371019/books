@@ -7,9 +7,9 @@ const app = express();
 //ejecutar la funcion por defecto
 createLibrarians();
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 
-app.use(cors());
+// app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('welcome to bookstore ');
