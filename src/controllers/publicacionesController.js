@@ -13,7 +13,7 @@ export const getPublication = async (req, res) => {
 export const createPublication = async (req, res) => {
     try{
     const { titulo, author, description, date} = req.body;
-    const newPubliction = new Publicacion({ titulo, author, description, pages, date}); 
+    const newPubliction = new Publicacion({ titulo, author, description, date}); 
     const publicsSave = await newPubliction.save();
     res.status(201).json("Publicacion subida con exito");
     } catch (error){
