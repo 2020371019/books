@@ -1,5 +1,7 @@
 import libroutes from './src/routes/books.routes';
 import authRoutes from './src/routes/getin.routes';
+import publicacionRoutes from './src/routes/publicatios.routes';
+
 import createLibrarians from './src/libs/initialSetup';
 import express from 'express';
 import cors from 'cors';
@@ -16,4 +18,5 @@ app.get('/', (req, res) => {
 
 app.use('/books', libroutes);
 app.use('/getin', authRoutes);
+app.use('/publication', publicacionRoutes);
 export default app;
