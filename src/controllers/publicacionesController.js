@@ -13,17 +13,11 @@ export const getPublication = async (req, res) => {
 export const createPublication = async (req, res) => {
     try {
         const { titulo, description } = req.body;
-
         // Verifica que todos los campos necesarios estén presentes
-        if (!reader) {
-            return res.status(400).json({ message: "El campo 'reader' es obligatorio" });
-        }
         const newPublication = new Publicacion({
             titulo,
             description,
-            // reader 
         });
-
         const publicationSaved = await newPublication.save();
         res.status(201).json({ message: "Publicación subida con éxito", publication: publicationSaved });
     } catch (error) {
